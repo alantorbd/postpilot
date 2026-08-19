@@ -81,7 +81,10 @@ export default function Sidebar({ isOpen, setIsOpen }: props) {
           </div>
         </div>
 
-        <button className="mt-1 flex items-center gap-2 px-3 py-2  w-full rounded text-sm text-slate-500 hover:bg-red-50 hover:text-red-500 transition-all duration-150 cursor-pointer">
+        <button
+          onClick={logout}
+          className="mt-1 flex items-center gap-2 px-3 py-2  w-full rounded text-sm text-slate-500 hover:bg-red-50 hover:text-red-500 transition-all duration-150 cursor-pointer"
+        >
           <LogOutIcon className="size-4" />
           Sign Out
         </button>

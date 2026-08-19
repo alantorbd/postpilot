@@ -20,6 +20,8 @@ export default defineConfig([
     },
     rules: {
       "no-unused-vars": "warn",
+      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-explicit-any": "off",
     },
   },
 ]);
