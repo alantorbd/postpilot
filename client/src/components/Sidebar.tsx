@@ -16,6 +16,7 @@ interface props {
 export default function Sidebar({ isOpen, setIsOpen }: props) {
   const { logout, user } = {
     logout: () => {
+      // eslint-disable-next-line react-hooks/immutability
       window.location.href = "/";
     },
     user: {
