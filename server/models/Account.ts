@@ -16,6 +16,7 @@ const accountSchema = new mongoose.Schema(
       ],
       required: true,
     },
+    handle: { type: String, required: true },
     zernioAccountId: { type: String },
     accessToken: { type: String },
     refreshToken: { type: String },
