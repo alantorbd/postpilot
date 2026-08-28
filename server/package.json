@@ -15,7 +15,7 @@
   "type": "module",
   "dependencies": {
     "@google/genai": "^2.19.0",
-    "@zernio/node": "^0.2.653",
+    "@zernio/node": "^0.2.660",
     "bcrypt": "^6.0.0",
     "cloudinary": "^2.11.0",
     "cors": "^2.8.6",

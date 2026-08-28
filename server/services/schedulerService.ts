@@ -19,7 +19,7 @@ export const initScheduler = () => {
             platform: { $in: post.platforms },
             status: "connected",
             zernioAccountId: { $exists: true },
-          });
+          } as any);
 
           if (accounts.length === 0) {
             console.log(
@@ -28,7 +28,7 @@ export const initScheduler = () => {
             continue;
           }
           const zernioPlatforms = accounts.map((acc) => ({
-            tfrom: acc.platform as any,
+            platform: acc.platform as any,
             accountId: acc.zernioAccountId!,
           }));
 

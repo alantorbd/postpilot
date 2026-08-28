@@ -129,6 +129,7 @@ export const schedulePost = async (
       mediaUrl = result.secure_url;
       mediaType = result.resource_type == "video" ? "video" : "image";
     }
+
     const post = await Post.create({
       user: req.user._id,
       content,
