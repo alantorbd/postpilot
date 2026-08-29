@@ -7,11 +7,8 @@ import {
   TrendingUpIcon,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import {
-  dummyAccountsData,
-  dummyActivityData,
-  dummyPostsData,
-} from "../assets/assets";
+
+import api from "../api/axios";
 
 export default function Dashboard() {
   const [stats, setStats] = useState({
@@ -24,16 +21,22 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const [postsRes, accountsRes, activityRes] = [
-          { data: dummyPostsData },
-          { data: dummyAccountsData },
-          { data: dummyActivityData },
-        ];
-        const posts = postsRes.data;
+        // const [postsRes, accountsRes, activityRes] = await Promise.all([
+        //   {},
+        //   {},
+        //   { data: [] },
+        // ]);
+        const postsResult = await api.get("/api/posts");
+        const accountsResult = await api.get("/api/accounts");
+        const activityRes = await api.get("/api/activity");
+        console.log(activityRes);
+
+        const posts: any = postsResult.data;
+
         setStats({
           scheduled: posts.filter((p: any) => p.status === "scheduled").length,
           published: posts.filter((p: any) => p.status === "published").length,
-          connectedAccounts: accountsRes.data.filter(
+          connectedAccounts: accountsResult.data.filter(
             (a: any) => a.status === "connected",
           ).length,
         });

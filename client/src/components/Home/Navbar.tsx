@@ -1,12 +1,17 @@
 import { ArrowRightIcon } from "lucide-react";
 import { Link } from "react-router";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Navbar() {
-  const { user } = { user: false };
+  const { user } = useAuth();
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-100">
       <div className="flex items-center justify-between max-w-6xl mx-auto px-4 sm:px-6 h-16">
-        <Link to="/" className="flex items-center gap-2">
+        <Link
+          to="/"
+          onClick={() => scrollTo(0, 0)}
+          className="flex items-center gap-2"
+        >
           <img src="/logo.svg" alt="Logo" className="size-7" />
           <span className="text-xl lg:text-2xl font-medium font-serif text-slate-800">
             Post-Pilot

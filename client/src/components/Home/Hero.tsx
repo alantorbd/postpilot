@@ -8,7 +8,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-size-[56px_56px] pointer-events-none" />
 
       {/* Red soft glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[560px] bg-[radial-gradient(ellipse_at_center,rgba(239,68,68,0.08)_0%,transparent_70%)] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2  w-225 h-140 bg-[radial-gradient(ellipse_at_center,rgba(239,68,68,0.08)_0%,transparent_70%)] pointer-events-none" />
 
       <div className="relative max-w-6xl mx-auto px-5 sm:px-8 pt-20 pb-12 text-center">
         {/* Badge */}
@@ -24,7 +24,7 @@ export default function Hero() {
           <span className="text-red-400 italic">Grow faster.</span>
         </h1>
 
-        {/* Subheadline */}
+        {/* Subheading */}
         <p className="mt-7 text-gray-500 max-w-2xl mx-auto">
           Scheduler lets you create, schedule, and auto-engage across all your
           social platforms — powered by AI that writes your captions and replies
@@ -77,7 +77,7 @@ export default function Hero() {
                 { val: "12", label: "Scheduled" },
                 { val: "48", label: "Published" },
                 { val: "4", label: "Accounts" },
-                { val: "3", label: "AI Rules" },
+                { val: "2", label: "AI Rules" },
               ].map((s) => (
                 <div
                   key={s.label}

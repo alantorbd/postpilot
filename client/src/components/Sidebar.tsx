@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import React from "react";
 import { NavLink, useLocation } from "react-router";
+import { useAuth } from "../context/AuthContext";
 
 interface props {
   isOpen: boolean;
@@ -14,16 +15,7 @@ interface props {
 }
 
 export default function Sidebar({ isOpen, setIsOpen }: props) {
-  const { logout, user } = {
-    logout: () => {
-      // eslint-disable-next-line react-hooks/immutability
-      window.location.href = "/";
-    },
-    user: {
-      name: "Antor al",
-      email: "alantorbd@gmail.com",
-    },
-  };
+  const { logout, user } = useAuth();
   const location = useLocation();
   const navItems = [
     { name: "Dashboard", icon: LayoutDashboardIcon, path: "/dashboard" },
