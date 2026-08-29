@@ -10,13 +10,89 @@ export default function Login() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoding] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { login, user } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoding(true);
+
+    if (!loginState) {
+      try {
+        // Name validation
+        if (!name.trim()) {
+          throw new Error("Please enter your full name.");
+        }
+
+        if (name.trim().length < 2) {
+          throw new Error("Your name must be at least 2 characters long.");
+        }
+
+        // Email validation
+        if (!email.trim()) {
+          throw new Error("Please enter your email address.");
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRegex.test(email.trim())) {
+          throw new Error("Please enter a valid email address.");
+        }
+
+        // Password validation
+        if (!password) {
+          throw new Error("Please create a password.");
+        }
+
+        if (password.length < 6) {
+          throw new Error("Password must be at least 6 characters long.");
+        }
+
+        if (!/[A-Z]/.test(password)) {
+          throw new Error(
+            "Password must contain at least one uppercase letter.",
+          );
+        }
+
+        if (!/[a-z]/.test(password)) {
+          throw new Error(
+            "Password must contain at least one lowercase letter.",
+          );
+        }
+
+        if (!/[0-9]/.test(password)) {
+          throw new Error("Password must contain at least one number.");
+        }
+
+        // Confirm password validation
+        if (!confirmPassword) {
+          throw new Error("Please confirm your password.");
+        }
+
+        if (password !== confirmPassword) {
+          throw new Error(
+            "Passwords do not match. Please make sure both passwords are the same.",
+          );
+        }
+      } catch (error: any) {
+        toast.error(
+          error?.message || "Please check your information and try again.",
+          {
+            position: "top-center",
+            style: {
+              background: "#f50707",
+              color: "white",
+              fontWeight: "bold",
+            },
+          },
+        );
+
+        return;
+      }
+    }
+
+    setLoading(true);
     try {
       const { data } = await api.post(
         `/api/auth/${loginState ? "login" : "register"}`,
@@ -31,7 +107,7 @@ export default function Login() {
     } catch (error: any) {
       toast.error(error.response?.data?.message || error?.message);
     } finally {
-      setLoding(false);
+      setLoading(false);
     }
   };
 
@@ -97,6 +173,23 @@ export default function Login() {
                 />
               </div>
             </div>
+
+            {!loginState && (
+              <div>
+                <label className="block mb-1.5">Confirm Password</label>
+                <div className="relative">
+                  <LockIcon className="absolute size-4 left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+                  <input
+                    type="password"
+                    required
+                    placeholder="********"
+                    className="w-full pl-10 pr-4 py-2.5 bg-slate-50 outline-slate-300 border border-slate-200 rounded-full"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                </div>
+              </div>
+            )}
             <button
               type="submit"
               disabled={loading}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { dummyPostsData, PLATFORMS } from "../assets/assets";
+import { PLATFORMS } from "../assets/assets";
 import {
   ArrowRightIcon,
   CalendarDaysIcon,
