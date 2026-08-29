@@ -4,7 +4,7 @@ import {
   PlusIcon,
   UnplugIcon,
 } from "lucide-react";
-import React from "react";
+
 import { PLATFORMS } from "../assets/assets";
 
 interface AccountListProps {

@@ -5,7 +5,6 @@ import {
   UsersIcon,
   Wand2Icon,
 } from "lucide-react";
-import React from "react";
 import { NavLink, useLocation } from "react-router";
 import { useAuth } from "../context/AuthContext";
 
