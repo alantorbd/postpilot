@@ -22,15 +22,6 @@ export const generatePost = async (
       return;
     }
     const ai = new GoogleGenAI({ apiKey: apiKey });
-    // Generating Text
-    // const textResponse = await ai.models.generateContent({
-    //   model: "gemini-3.7-flash",
-    //   contents: `Generate a social media post based on this prompt: "${prompt}".
-    //   Tone: ${tone}.
-    //   Include relate hashtags.
-    //   Format the response as JSON with "content" and "imagePrompt" fields.
-    //   The "imagePrompt" should be a highly descriptive prompt for an image generator that complements the post.`,
-    // });
 
     const textResponse = await ai.interactions.create({
       model: "gemini-3.1-flash-lite",
