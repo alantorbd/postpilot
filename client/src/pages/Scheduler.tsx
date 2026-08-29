@@ -35,8 +35,21 @@ export default function Scheduler() {
     return () => clearInterval(interval);
   }, []);
 
-  const scheduled = posts.filter((p) => p.status === "scheduled");
-  const published = posts.filter((p) => p.status === "published");
+  // const scheduled = posts.filter((p) => p.status === "scheduled");
+  // const published = posts.filter((p) => p.status === "published");
+  const scheduled = posts
+    .filter((p) => p.status === "scheduled")
+    .sort(
+      (a, b) =>
+        new Date(b.scheduledFor).getTime() - new Date(a.scheduledFor).getTime(),
+    );
+
+  const published = posts
+    .filter((p) => p.status === "published")
+    .sort(
+      (a, b) =>
+        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime(),
+    );
 
   const togglePlatform = (id: string) =>
     setSelectedPlatforms((prev) =>
